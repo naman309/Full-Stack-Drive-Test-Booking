@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include ('layouts/head'); -%>
+
+<body>
+
+  <!-- Navigation-->
+  <%- include('layouts/nav'); -%>
+  <!-- Page Header-->
+  <header class="masthead" style="background-image: url('/assets/img/driving.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>Register</h1>
+                    <span class="subheading">Create your account today!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+  <main class="mb-4">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="my-5">
+                  <form method="post" action="/signup" >
+                    <div class="form-floating">             
+                        <input class="form-control mt-3" type="text" name="username" placeholder="Username"  class="email" />
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="form-floating">
+                        <input class="form-control mt-3" type="password" name="password" placeholder="Password "  class="email" />
+                        <label for="password">Password</label>
+                    </div>
+                    <br/>
+                    <div class="form-floating">
+                        <select class="email" name="userType" id="userType">
+                            <option value="Driver">Driver</option>
+                            <option value="Examiner">Examiner</option>
+                            <option value="Admin">Admin</option>
+                          </select>
+                    </div>
+                    <br/>
+                        <input class="btn btn-primary text-uppercase" type="submit" id="submit" value="Signup" />
+                  </form>
+              </div>
+          </div>
+      </div>
+    </div>
+</main><!-- End #main -->
+
+  <%- include ('layouts/footer'); -%>
+
+  
+
+  <%- include ('layouts/script'); -%>
+
+</body>
+
+</html>

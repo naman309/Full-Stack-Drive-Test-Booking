@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include ('layouts/head'); -%>
+
+<body>
+
+ <!-- Navigation-->
+ <%- include('layouts/nav'); -%>
+ <!-- Page Header-->
+ <header class="masthead" style="background-image: url('/assets/img/GTest.gif')">
+     <div class="container position-relative px-4 px-lg-5">
+         <div class="row gx-4 gx-lg-5 justify-content-center">
+             <div class="col-md-10 col-lg-8 col-xl-7">
+                 <div class="page-heading">
+                     <h1>G Test</h1>
+                     <span class="subheading">Book your G Test</span>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </header>
+
+  
+ <main class="mb-4">
+  <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+              <div class="my-5">
+                  <form method="post" action="/G/update?LicenseNumber=<%= userData.LicenseNumber %>">
+                    <% if(userData){ %>
+
+                      <h1>Personal Information</h1>
+                      <br/> 
+
+                      <div class="form-floating">
+                        <input class="form-control" name="FirstName" <%-
+                                            `value="${userData.FirstName}" ` %> type="text" placeholder="Enter your
+                                        License Plate number..." data-sb-validations="required" disabled />
+                        <label for="FirstName">First Name</label>
+                      </div>
+
+                      <div class="form-floating">
+                        <input class="form-control" name="LastName" <%-
+                                            `value="${userData.LastName}" ` %> type="text" placeholder="Enter your
+                                        License Plate number..." data-sb-validations="required" disabled />
+                        <label for="LastName">Last Name</label>
+                      </div>
+
+                      <div class="form-floating">
+                        <input class="form-control" name="Age" <%-
+                                            `value="${userData.Age}" ` %> type="text" placeholder="Enter your
+                                        License Plate number..." data-sb-validations="required" disabled />
+                        <label for="Age">Age</label>
+                      </div>
+
+                      <div class="form-floating">
+                        <input class="form-control" name="DateOfBirth" <%-
+                                            `value="${userData.DateOfBirth}" ` %> type="text" placeholder="Enter your
+                                        License Plate number..." data-sb-validations="required" disabled />
+                        <label for="DateOfBirth">Date Of Birth</label>
+                      </div>
+
+                      <div class="form-floating">
+                        <input class="form-control" name="LicenseNumber" <%-
+                                            `value="${userData.LicenseNumber}" ` %> type="text" placeholder="Enter your
+                                        License Plate number..." data-sb-validations="required" disabled />
+                        <label for="LicenseNumber">License Number</label>
+                      </div>
+
+                      <br/>
+                      <h1>Car Information</h1>
+                      <br/>
+
+                      <div class="form-floating">
+                        <input class="form-control" name="Make" <%-
+                                            `value="${userData.CarDetails.Make}" ` %> type="text" placeholder="Enter your
+                                        License Plate number..." data-sb-validations="required"  />
+                        <label for="Make">Make</label>
+                      </div>
+
+                      <div class="form-floating">
+                        <input class="form-control" name="Model" <%-
+                                            `value="${userData.CarDetails.Model}" ` %> type="text" placeholder="Enter your
+                                        License Plate number..." data-sb-validations="required"  />
+                        <label for="Model">Model</label>
+                      </div>
+
+                      <div class="form-floating">
+                        <input class="form-control" name="Year" <%-
+                                            `value="${userData.CarDetails.Year}" ` %> type="number" placeholder="Enter your
+                                        License Plate number..." data-sb-validations="required"  />
+                        <label for="Year">Year</label>
+                      </div>  
+                        
+                      <div class="form-floating">
+                        <input class="form-control" name="NumberPlate" <%-
+                                            `value="${userData.CarDetails.NumberPlate}" ` %> type="text" placeholder="Enter your
+                                        License Plate number..." data-sb-validations="required"  />
+                        <label for="NumberPlate">Number Plate</label>
+                      </div>
+                      
+                      <br/>
+                        <input class="btn btn-primary text-uppercase" type="submit" class="btn"></br>
+                    <% } %>
+                  </form>
+
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+  </main><!-- End #main -->
+
+  <%- include ('layouts/footer'); -%>
+  
+
+  <%- include ('layouts/script'); -%>
+
+</body>
+
+</html>
+
+
+</body>
+
+</html>

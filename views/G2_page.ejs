@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include ('layouts/head'); -%>
+
+<body>
+
+<!-- Navigation-->
+ <%- include('layouts/nav'); -%>
+ <!-- Page Header-->
+ <header class="masthead" style="background-image: url('/assets/img/G2Test.gif')">
+     <div class="container position-relative px-4 px-lg-5">
+         <div class="row gx-4 gx-lg-5 justify-content-center">
+             <div class="col-md-10 col-lg-8 col-xl-7">
+                 <div class="page-heading">
+                     <h1>G2 Test</h1>
+                     <span class="subheading">Book your G2 Test</span>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </header>
+
+ <main class="mb-4">
+  <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+              <div class="my-5">
+                <% if (typeof isDefault != 'undefined' && isDefault) { %>
+                <form method="post" action="/g2/submit">
+                <% if (typeof message != 'undefined') { %>
+                <p class="text-danger fw-bold"> <%= message %> </p>
+                <% } %>
+                <h1>Personal Information</h1>
+                <br/>
+                <div class="form-floating">
+                  <input class="form-control" type="text" name="FirstName" placeholder="Firstname" class="email"  required/>
+                  <label for="FirstName">First Name</label>
+                </div>
+
+                <div class="form-floating">
+                  <input class="form-control" type="text" name="LastName" placeholder="Lastname" class="email"  required/>
+                  <label for="LastName">Last Name</label>
+                </div>
+
+                <div class="form-floating">
+                  <input class="form-control" type="number" name="Age" placeholder="age" class="email" required />
+                  <label for="Age">Age</label>
+                </div>
+
+                <div class="form-floating">
+                  <input class="form-control" type="text" name="LicenseNumber" placeholder="LicenseNumber" class="email" required/>
+                  <label for="LicenseNumber">License Number</label>
+                </div>
+                
+                <div class="form-floating">
+                  <input class="form-control" type="date" name="DateOfBirth" placeholder="YYYY/MM/DD" class="email"  required/>
+                  <label for="DateOfBirth">Date Of Birth</label>
+                </div>
+
+                <br/>
+                <h1>Car Details</h1>
+
+                <div class="form-floating">
+                  <input class="form-control" type="text" name="Make" placeholder="Make" class="email"  required/>
+                  <label for="Make">Make</label>
+                </div>
+
+                <div class="form-floating">
+                  <input class="form-control" type="text" name="Model" placeholder="Model" class="email" required/>
+                  <label for="Model">Model</label>
+                </div>
+
+                <div class="form-floating">
+                  <input class="form-control" type="number" name="Year" placeholder="Year" class="email"  required/>
+                  <label for="Year">Year</label>
+                </div>
+
+                <div class="form-floating">
+                  <input class="form-control" type="text" name="NumberPlate" placeholder="Plate Number" class="email" required />
+                  <label for="NumberPlate">Number Plate</label>
+                </div>
+
+                <br/>
+                <input class="btn btn-primary text-uppercase" type="submit" name="Submit" />
+                <br/>
+                </form>
+              </div>
+          </div>
+        </div>
+      </div>
+  
+  <% } %>
+
+  
+
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <div class="appointment">
+            <div class="my-5">
+            <h3>Book Appointment</h3>
+              <form action="/appointment-slot-book" method="post">
+                  <div class="form-floating">
+                    <input class="form-control" type="date" name="date" onchange="getAvailableSlot(this.value)" required>
+                    <label for="date">Select Date</label>
+                  </div>
+                  
+                  <br/>
+                  <div class="form-floating">
+                    <select name="sTime" id="slotListDropDown" required>
+                      <option id="defaultSlot" value="0" readonly>Select Slot Time</option>
+                    </select>
+                  </div>
+                  <br/>
+                  
+                  <input class="btn btn-primary text-uppercase" type="submit" value="Get Appointment"/>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main><!-- End #main -->
+
+  <%- include ('layouts/footer'); -%>
+  
+
+  <%- include ('layouts/script'); -%>
+
+  <script>
+    var slots = [];
+    function getAvailableSlot(date){
+      
+     
+      fetch("http://localhost:4000/slots/?date="+date)
+      .then((response)=>{
+      return response.json();
+      }).then((data) => {
+        console.log("data :",data);
+        slots = data
+        displaySlot(data)
+       
+      });
+    }
+
+    function displaySlot(slots){
+      //console.log(slots['availableSlot']);
+      removeSlots();
+      const slotListDropDown = document.getElementById("slotListDropDown"); 
+     console.log("len ",slots['availableSlot'].length);
+      var options = slotListDropDown.options;
+      console.log(options);
+
+      if(slots['availableSlot'].length == 0){
+        options[0].text = "No slots available"
+
+      }
+      else{
+
+      options[0].text = "Select Slot Time"
+      for (let key in slots['availableSlot']) {
+      
+        
+        let id = slots['availableSlot'][key]['_id'];
+        let time = slots['availableSlot'][key]['Time'];
+
+        let option = document.createElement("option");
+        option.setAttribute('value', id);
+        option.className = "slotTime"        
+        let optionText = document.createTextNode(time);
+        option.appendChild(optionText);
+        
+        slotListDropDown.appendChild(option);
+      }
+      }
+    }
+
+    function removeSlots(){
+      const slotTimes = document.getElementsByClassName('slotTime')
+
+      while(slotTimes.length > 0){
+        slotTimes[0].parentNode.removeChild(slotTimes[0]);
+      }
+ 
+  }
+  </script>
+</body>
+
+</html>

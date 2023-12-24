@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include ('layouts/head'); -%>
+
+<body>
+
+  <!-- Navigation-->
+  <%- include('layouts/nav'); -%>
+
+  <!-- Page Header-->
+  <header class="masthead" style="background-image: url('/assets/img/driving.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <div class="post-heading">
+            <h1>Appointment</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="mb-4">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="my-5">
+              <form method="post" action="/appointment-slot">
+                <br/>
+                  <h1>Add Slot </h1>
+                <br/>
+                <div class="form-floating">
+                  <input class="form-control" type="date" name="sdate" placeholder="YYYY/MM/DD" class="email"  required/>
+                </div>
+                
+                <br/>
+                <div class="form-floating">
+                  <select name="stime" id="stime">
+                    <option value="0"> Select Slot Time </option>
+                    <option value="09:00">09:00</option>
+                    <option value="09:30">09:30</option>
+                    <option value="10:00">10:00</option>
+                    <option value="10:30">10:30</option>
+                    <option value="11:00">11:00</option>
+                    <option value="11:30">11:30</option>
+                    <option value="12:00">12:00</option>
+                    <option value="12:30">12:30</option>
+                    <option value="01:00">01:00</option>
+                    <option value="01:30">01:30</option>
+                  </select>
+                </div>
+
+                <br/>
+                    <input class="btn btn-primary text-uppercase" type="submit" name="Submit" />
+                <br/>
+                
+                <% if (typeof message != 'undefined') { %>
+                  <p class="text-<%=color%> fw-bold"> <%= message %> </p>
+                <% } %>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main><!-- End #main -->
+
+  <%- include ('layouts/footer'); -%>
+  
+
+  <%- include ('layouts/script'); -%>
+
+</body>
+
+</html>

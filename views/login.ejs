@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include ('layouts/head'); -%>
+
+<body>
+  <!-- Navigation-->
+  <%- include('layouts/nav'); -%>
+  <!-- Page Header-->
+  <header class="masthead" style="background-image: url('/assets/img/Login.jpg')">
+      <div class="container position-relative px-4 px-lg-5">
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+              <div class="col-md-10 col-lg-8 col-xl-7">
+                  <div class="page-heading">
+                      <h1>Login</h1>
+                      <span class="subheading">Get started with your account</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+  
+
+  
+
+  <main class="mb-4">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+           <div class="my-5">
+
+                <form action="/login" method="post" >
+
+                  <div class="form-floating">
+                      
+                      <input class="form-control" type="text" name="username" class="form-control" id="username" required>
+                      <label for="username">Username</label>
+                  </div>
+                  
+                  <div class="form-floating">
+                      
+                      <input class="form-control" type="password" class="form-control" name="password" id="password"  required>
+                      <label for="password">Password</label>
+                  </div>
+            
+                  </div>
+                  <div class="text-center col-md-2  m-1 ">
+                    <input class="btn btn-primary text-uppercase " type="submit" id="submit" value="Login" /></div>
+                  <% if(typeof error != 'undefined'){ %> 
+                    <h3>Error : <%=error %> </h3>
+                  <% } %>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <%- include ('layouts/footer'); -%>
+
+
+  <%- include ('layouts/script'); -%>
+
+</body>
+
+</html>

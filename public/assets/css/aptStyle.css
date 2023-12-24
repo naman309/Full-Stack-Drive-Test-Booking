@@ -1,0 +1,24 @@
+
+.appointment .slots{
+  display: flex;
+  flex-wrap: wrap;
+}
+.appointment .slots .slot{
+
+  background-color: blueviolet;
+  margin: 10px;
+  border-radius: 7px;
+  padding: 7px 14px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    
+  }
+  
+.appointment .slots .booked{
+    background-color: rgb(77, 24, 128);
+    color: rgb(183, 183, 183);
+}
